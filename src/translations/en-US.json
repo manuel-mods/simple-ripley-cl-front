@@ -1,7 +1,10 @@
 {
-  "APP_NAME": "simple ripley cl front",
+  "APP_NAME": "simple.ripley.cl ENG",
   "About": "About",
   "Hello world !": "Hello world!",
   "Home": "Home",
-  "Version": "Version"
+  "Version": "Version",
+  "List of products": "Featured Products",
+  "Price": "Price"
+
 }

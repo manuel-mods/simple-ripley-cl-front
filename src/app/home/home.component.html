@@ -7,16 +7,22 @@
     <div class="col-12">
       <app-loader [isLoading]="isLoading"></app-loader>
       <ng-container *ngIf="!isLoading">
-          <div class="card-columns col-12">
-              <div class="card shadow-sm" *ngFor="let product of products" style="overflow: hidden;" (click)="open(content, product)">
-                <div class="top-border"></div>
-                <img class="card-img-top animated fadeIn mt-2 px-3" [defaultImage]="defaultImage" [lazyLoad]="product.url">
-                <div class="card-body">
-                  <h5 class="card-title">{{product.name}}</h5>
-                  <p class="card-text">{{product.price}}</p>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-4 mb-2" *ngFor="let product of products">            
+                <div class="card shadow-sm card-product" (click)="open(content, product)">
+                  <div class="top-border"></div>
+                  <img class="card-img-top animated fadeIn mt-2 px-3" [defaultImage]="defaultImage" [lazyLoad]="product.url">
+                  <div class="card-info">
+                    <div class="text p-3">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text mb-2">{{product.price}}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                </div>
             </div>
+          </div>
       </ng-container>
     </div>  
   </div>
@@ -41,6 +47,10 @@
               <img class="img-thumbnail animated fadeIn px-3" [defaultImage]="defaultImage" [lazyLoad]="productDetail.thumbnailImage">
           </div>
           <div class="col-6">
+              <b>{{productDetail.shortDescription}}</b><br>
+              <span class="small" translate>SKU</span>: <span class="small">{{productDetail.partNumber}}</span><br>
+            <span translate>Price</span>: {{productDetail.prices.formattedListPrice ? productDetail.prices.formattedListPrice : productDetail.prices.formattedListPrice}}
+            <hr>
           <ul class="list-group">
               <li class="list-group-item small" *ngFor="let attr of productDetail.attributes">
                 {{attr.name}}: {{attr.value}}
