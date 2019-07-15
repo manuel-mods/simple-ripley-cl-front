@@ -1,0 +1,46 @@
+<div class="container animated fadeIn">
+<div class="row">
+  <div class="col-12">
+    <h2 class="text-center pb-2 text-primary" translate>List of products</h2>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-loader [isLoading]="isLoading"></app-loader>
+      <ng-container *ngIf="!isLoading">
+          <div class="card-columns col-12">
+              <div class="card shadow-sm" *ngFor="let product of products" style="overflow: hidden;" (click)="open(content, product)">
+                <div class="top-border"></div>
+                <img class="card-img-top animated fadeIn mt-2 px-3" [defaultImage]="defaultImage" [lazyLoad]="product.url">
+                <div class="card-body">
+                  <h5 class="card-title">{{product.name}}</h5>
+                  <p class="card-text">{{product.price}}</p>
+                </div>
+              </div>
+            </div>
+      </ng-container>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{product.name}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-12">
+          <img src="{{defaultImage}}" class="mx-auto d-block" *ngIf="isLoadingDetail">
+        </div>
+        <div class="col-12 animated fadeIn" *ngIf="!isLoadingDetail">
+        <span class="small" [innerHtml]="productDetail.longDescription"></span>
+        <hr>
+        {{productDetail | json}}
+        </div>
+      </div>
+    </div>
+  </ng-template>
