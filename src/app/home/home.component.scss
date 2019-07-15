@@ -26,3 +26,10 @@ q {
   75%  {transform: scale(1.1)}
   100% {transform: scale(1)}
 }
+
+.productDetail {
+  font-size: 0.7em;
+  br {
+    display: none;
+  }
+}

@@ -18,7 +18,7 @@
               </div>
             </div>
       </ng-container>
-    </div>
+    </div>  
   </div>
   </div>
 </div>
@@ -31,16 +31,28 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" style="height: 80vh;overflow: scroll;">
       <div class="row">
         <div class="col-12">
           <img src="{{defaultImage}}" class="mx-auto d-block" *ngIf="isLoadingDetail">
         </div>
-        <div class="col-12 animated fadeIn" *ngIf="!isLoadingDetail">
-        <span class="small" [innerHtml]="productDetail.longDescription"></span>
-        <hr>
-        {{productDetail | json}}
+        <ng-container *ngIf="!isLoadingDetail">
+          <div class="col-6">
+              <img class="img-thumbnail animated fadeIn px-3" [defaultImage]="defaultImage" [lazyLoad]="productDetail.thumbnailImage">
+          </div>
+          <div class="col-6">
+          <ul class="list-group">
+              <li class="list-group-item small" *ngFor="let attr of productDetail.attributes">
+                {{attr.name}}: {{attr.value}}
+              </li>
+            </ul>
+          </div>
+          <div class="col-12">
+            <hr>
+            <div class="productDetail" [innerHtml]="productDetail.longDescription"></div>
+          </div>
+        </ng-container>
         </div>
       </div>
-    </div>
+    
   </ng-template>
